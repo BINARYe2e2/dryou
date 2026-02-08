@@ -155,9 +155,27 @@
     <main id="home" class="page-content active">
         <div id="home-inner">
             <div class="emblem-box">
-            <div class="main-logo-container" style="width: 800px; margin: 0 auto 15px; display: flex; justify-content: center;">
-                <img src="logo.png" alt="Dr.you Emblem" style="width: 100%; height: auto; display: block;">
+           <div class="main-logo-container" style="
+                width: 280px;             /* 로고 크기를 적당하게 조절 */
+                margin: 0 auto 10px;      /* 중앙 정렬 및 하단 간격 */
+                display: flex;
+                justify-content: center;
+                mix-blend-mode: multiply; /* 핵심: 이미지의 흰 배경을 사이트 배경과 합성하여 제거 */
+        ">
+            <img src="logo.png" alt="Dr.you Emblem" style="
+                width: 100%;
+                height: auto;
+                display: block;
+            ">
         </div>
+
+<h1 class="main-title-text" style="
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--main-burgundy);
+    margin: 0;
+    letter-spacing: 10px;
+">DR.YOU</h1>
          </div>
             <h1 class="main-title-text">DR.YOU</h1>
             <h2 class="main-promo-text">안동고등학교를 대표하는<br>의생명 탐구 동아리입니다.</h2>
@@ -225,6 +243,7 @@
     </script>
 </body>
 </html>
+
 
 
 
