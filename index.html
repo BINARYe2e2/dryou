@@ -157,17 +157,23 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding-top: 40px; /* 로고를 위로 올리기 위한 상단 여백 */
+        padding-top: 60px; /* 로고를 위로 올리기 위한 여백 */
         text-align: center;
         min-height: 80vh;
         box-sizing: border-box;
     ">
         <div class="main-logo-container" style="
-            width: 250px; 
+            width: 250px;           /* 부모 박스 크기 고정 */
             margin-bottom: 20px;
-            mix-blend-mode: multiply; /* 격자무늬 제거 */
+            mix-blend-mode: multiply; /* 배경 격자무늬 제거 */
+            display: flex;
+            justify-content: center;
         ">
-            <img src="logo.png" alt="Dr.you Emblem" style="width: 250%; height: auto; display: block;">
+            <img src="logo.png" alt="Dr.you Emblem" style="
+                width: 100%; 
+                height: auto; 
+                display: block;
+            ">
         </div>
         
         <h1 class="main-title-text" style="
@@ -251,6 +257,7 @@
     </script>
 </body>
 </html>
+
 
 
 
