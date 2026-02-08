@@ -152,38 +152,53 @@
         </div>
     </aside>
 
-    <main id="home" class="page-content active">
-        <div id="home-inner">
-            <img src="logo.png" alt="Dr.you Emblem" style="
-                width: 50%;
-                height: auto;
-                display: block;
-                mix-blend-mode: multiply;
-            ">
+<main id="home" class="page-content active">
+    <div id="home-inner" style="
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 40px; /* 로고를 위로 올리기 위한 상단 여백 */
+        text-align: center;
+        min-height: 100vh;
+        box-sizing: border-box;
+    ">
+        <div class="main-logo-container" style="
+            width: 250px; 
+            margin-bottom: 20px;
+            mix-blend-mode: multiply; /* 격자무늬 제거 */
+        ">
+            <img src="logo.png" alt="Dr.you Emblem" style="width: 100%; height: auto; display: block;">
         </div>
-
-<h1 class="main-title-text" style="
-    font-size: 4rem;
-    font-weight: 900;
-    color: var(--main-burgundy);
-    margin: 0;
-    letter-spacing: 10px;
-">
-         </div>
-            <h1 class="main-title-text">DR.YOU</h1>
-            <h2 class="main-promo-text">안동고등학교를 대표하는<br>의생명 탐구 동아리입니다.</h2>
-            <div class="main-footer">Developed by <strong>[KP22]</strong> | Andong High School Dr.you</div>
+        
+        <h1 class="main-title-text" style="
+            font-size: 3.5rem; 
+            font-weight: 900; 
+            color: var(--main-burgundy); 
+            letter-spacing: 10px; 
+            margin: 0;
+        ">DR.YOU</h1>
+        
+        <h2 class="main-promo-text" style="
+            font-size: 1.6rem; 
+            font-weight: 700; 
+            color: var(--text-dark); 
+            margin: 20px 0; 
+            line-height: 1.4;
+        ">
+            안동고등학교를 대표하는<br>
+            의생명 탐구 동아리입니다.
+        </h2>
+        
+        <div class="main-footer" style="
+            margin-top: auto; 
+            padding-bottom: 30px; 
+            font-size: 0.8rem; 
+            color: rgba(0,0,0,0.3);
+        ">
+            Developed by <strong>[KP22]</strong> | Andong High School Dr.you
         </div>
-    </main>
-
-    <main id="activities" class="page-content">
-        <div class="container">
-            <h2 class="section-header">ACTIVITIES</h2>
-            <div class="card">
-                <h3>현재 개발 중입니다.</h3>
-            </div>
-        </div>
-    </main>
+    </div>
+</main>
 
     <main id="apply" class="page-content">
         <div class="container">
@@ -236,6 +251,7 @@
     </script>
 </body>
 </html>
+
 
 
 
