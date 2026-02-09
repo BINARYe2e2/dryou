@@ -362,14 +362,19 @@
             newCard.innerHTML = `
                 <div style="display: flex; justify-content: space-between; align-items: center; pointer-events: none;">
                     <span style="font-weight: bold; color: var(--main-burgundy);">[질문] ${userInfo}</span>
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                        <span style="font-size: 0.8rem; color: #999;">${date}</span>
-                        <button onclick="event.stopPropagation(); deleteQuestion(this)" class="admin-delete-btn" style="display: none; color: #ff4d4d; border: 1px solid #ff4d4d; background: none; border-radius: 3px; font-size: 0.7rem; cursor: pointer; padding: 2px 5px;">삭제</button>
-                    </div>
+                    <span style="font-size: 0.8rem; color: #999;">${date}</span>
                 </div>
                 <p style="margin-top: 10px; font-weight: 600; pointer-events: none;">${content}</p>
+                
                 <div class="qna-answer" style="display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #ddd;">
-                    <p style="color: #444;"><span style="color: var(--main-burgundy); font-weight: bold;">└ Dr.you:</span> 질문이 접수되었습니다. 곧 답변해 드릴게요!</p>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <p style="color: #444; margin: 0;"><span style="color: var(--main-burgundy); font-weight: bold;">└ Dr.you:</span> 질문이 접수되었습니다. 곧 답변해 드릴게요!</p>
+                        
+                        <button onclick="event.stopPropagation(); deleteQuestion(this)" 
+                            style="color: #ccc; border: none; background: none; font-size: 0.7rem; cursor: pointer; white-space: nowrap; margin-left: 10px;">
+                            삭제
+                        </button>
+                    </div>
                 </div>
             `;
         
@@ -395,6 +400,7 @@
     </script>
 </body>
 </html>
+
 
 
 
