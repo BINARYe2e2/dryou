@@ -261,6 +261,38 @@
             </div>
         </div>
     </main>
+    <main id="qna" class="page-content">
+    <div class="container">
+        <h2 class="section-header">Q&A BOARD</h2>
+        
+        <div class="card" style="margin-bottom: 30px;">
+            <h3 style="color: var(--main-burgundy); margin-bottom: 15px;">질문 남기기</h3>
+            <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">
+                동아리 활동, 지원 방법 등 궁금한 점을 자유롭게 물어보세요!
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <input type="text" id="q-title" placeholder="제목을 입력하세요" style="padding: 12px; border: 1px solid #ddd; border-radius: 5px;">
+                <textarea id="q-content" placeholder="내용을 상세히 적어주세요" rows="4" style="padding: 12px; border: 1px solid #ddd; border-radius: 5px; resize: none;"></textarea>
+                <button class="submit-btn" style="width: 100%;">질문 등록하기</button>
+            </div>
+        </div>
+
+        <div id="qna-list">
+            <h3 style="margin-bottom: 20px;">최근 질문</h3>
+            
+            <div class="card" style="border-left: 5px solid var(--main-burgundy);">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h4 style="margin: 0;">실험은 일주일에 몇 번 하나요?</h4>
+                    <span style="font-size: 0.8rem; color: #999;">2026.02.10</span>
+                </div>
+                <p style="margin-top: 10px; font-size: 0.95rem;">안녕하세요! 신입생입니다. 보통 실험 세션이 어떻게 운영되는지 궁금합니다.</p>
+                <div style="margin-top: 15px; padding-top: 10px; border-top: 1px dashed #ddd; color: var(--main-burgundy); font-weight: bold;">
+                    └ Re: 답변 대기 중입니다.
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 
     <script>
         function toggleSidebar() { document.getElementById("mySidebar").classList.toggle("active"); }
@@ -292,6 +324,7 @@
     </script>
 </body>
 </html>
+
 
 
 
