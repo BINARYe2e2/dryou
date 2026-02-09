@@ -363,15 +363,37 @@
                 <div class="qna-answer" style="display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #ddd;">
                     <p style="color: #444;"><span style="color: var(--main-burgundy); font-weight: bold;">└ Dr.you:</span> 질문이 접수되었습니다. 곧 답변해 드릴게요!</p>
                 </div>
+                <span style="font-size: 0.8rem; color: #999;">${date}</span>
+
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 0.8rem; color: #999;">${date}</span>
+                    <button onclick="event.stopPropagation(); deleteQuestion(this)" class="admin-delete-btn" style="display: none; color: #ff4d4d; border: 1px solid #ff4d4d; background: none; border-radius: 3px; font-size: 0.7rem; cursor: pointer; padding: 2px 5px;">삭제</button>
+                </div>
             `;
 
             list.prepend(newCard); // 최신 질문을 목록 맨 위로 추가
             closeQnaModal();
             alert("질문이 등록되었습니다!");
         }
+        // 관리자 전용 삭제 함수
+        function deleteQuestion(btn) {
+            const password = prompt("관리자 비밀번호를 입력하세요:");
+    
+            // 본인이 원하는 비밀번호로 설정하세요 (예: 'dryou123')
+            if (password === '45510') { 
+                if (confirm("정말로 이 질문을 삭제하시겠습니까?")) {
+                    const card = btn.closest('.qna-item');
+                    card.remove();
+                    alert("삭제되었습니다.");
+                }
+            } else {
+                alert("비밀번호가 틀렸습니다.");
+            }
+        }
     </script>
 </body>
 </html>
+
 
 
 
