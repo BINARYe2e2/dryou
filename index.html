@@ -261,22 +261,29 @@
             </div>
         </div>
     </main>
-    <main id="qna" class="page-content">
-    <div class="container">
-        <h2 class="section-header">Q&A</h2>
-        
-        <div class="card" style="margin-bottom: 30px;">
-            <h3 style="color: var(--main-burgundy); margin-bottom: 15px;">질문 남기기</h3>
-            <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">
-                동아리 활동, 동아리 환경 등 궁금한 점을 자유롭게 물어보세요!
-                <strong>학반번호와 성함</strong>을 정확히 기재해 주시면 답변에 큰 도움이 됩니다.
-            </p>
-            <div style="display: flex; flex-direction: column; gap: 10px;">
-                <input type="text" id="q-user-info" placeholder="예: 1315 윤성혁 (학반번호 및 성함)" style="padding: 12px; border: 1px solid #ddd; border-radius: 5px;">
-                <textarea id="q-content" placeholder="내용을 적어주세요" rows="4" style="padding: 12px; border: 1px solid #ddd; border-radius: 5px; resize: none;"></textarea>
-                <button class="submit-btn" style="width: 100%;">질문 등록하기</button>
+<main id="qna" class="page-content">
+    <div class="container" style="position: relative; min-height: 85vh; padding-bottom: 100px;">
+        <h2 class="section-header">Q&A BOARD</h2>
+
+        <div id="qna-list-container">
+        </div>
+
+        <div id="qna-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 10000; justify-content: center; align-items: center;">
+            <div class="card" style="width: 90%; max-width: 500px; position: relative;">
+                <h3 style="color: var(--main-burgundy); margin-bottom: 15px;">새 질문 작성</h3>
+                <button onclick="closeQnaModal()" style="position: absolute; top: 15px; right: 15px; border: none; background: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+                
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <input type="text" id="q-user-info" placeholder="학반번호 및 성함 (예: 1315 윤성혁)" style="padding: 12px; border: 1px solid #ddd; border-radius: 5px;">
+                    <textarea id="q-content" placeholder="궁금한 내용을 적어주세요" rows="5" style="padding: 12px; border: 1px solid #ddd; border-radius: 5px; resize: none;"></textarea>
+                    <button class="submit-btn" onclick="addQuestionToList()" style="width: 100%; padding: 12px; background: var(--main-burgundy); color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">질문 등록하기</button>
+                </div>
             </div>
         </div>
+
+        <button onclick="openQnaModal()" style="position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%; background: var(--main-burgundy); color: white; border: none; font-size: 2rem; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 999; display: flex; justify-content: center; align-items: center;">
+            +
+        </button>
     </div>
 </main>
 
@@ -307,9 +314,65 @@
                 document.getElementById('successMessage').style.display = 'block';
             }).catch(() => alert('오류가 발생했습니다. 다시 제출해 주세요.'));
         });
+        // 1. 질문 작성 모달 열기/닫기
+        function openQnaModal() {
+            document.getElementById('qna-modal').style.display = 'flex';
+        }
+
+        function closeQnaModal() {
+            document.getElementById('qna-modal').style.display = 'none';
+            document.getElementById('q-user-info').value = ''; // 입력창 비우기
+            document.getElementById('q-content').value = '';
+        }
+
+        // 2. 답변 내용 보이기/숨기기 (토글)
+        function toggleAnswer(element) {
+            const answer = element.querySelector('.qna-answer');
+            if (answer.style.display === 'none' || answer.style.display === '') {
+                answer.style.display = 'block';
+                element.style.backgroundColor = '#fcfcfc'; // 열렸을 때 배경색 살짝 변경
+            } else {
+                answer.style.display = 'none';
+                element.style.backgroundColor = 'white';
+            }
+        }
+
+        // 3. 화면 리스트에 질문 추가 (임시)
+        function addQuestionToList() {
+            const userInfo = document.getElementById('q-user-info').value;
+            const content = document.getElementById('q-content').value;
+            const date = new Date().toLocaleDateString();
+
+            if (!userInfo || !content) {
+                alert("학반번호와 질문 내용을 모두 입력해 주세요!");
+                return;
+            }
+
+            const list = document.getElementById('qna-list');
+            const newCard = document.createElement('div');
+            newCard.className = 'card qna-item';
+            newCard.style = "cursor: pointer; border-left: 5px solid var(--main-burgundy); margin-bottom: 15px;";
+            newCard.onclick = function() { toggleAnswer(this); };
+
+            newCard.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: center; pointer-events: none;">
+                    <span style="font-weight: bold; color: var(--main-burgundy);">[질문] ${userInfo}</span>
+                    <span style="font-size: 0.8rem; color: #999;">${date}</span>
+                </div>
+                <p style="margin-top: 10px; font-weight: 600; pointer-events: none;">${content}</p>
+                <div class="qna-answer" style="display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #ddd;">
+                    <p style="color: #444;"><span style="color: var(--main-burgundy); font-weight: bold;">└ Dr.you:</span> 질문이 접수되었습니다. 곧 답변해 드릴게요!</p>
+                </div>
+            `;
+
+            list.prepend(newCard); // 최신 질문을 목록 맨 위로 추가
+            closeQnaModal();
+            alert("질문이 등록되었습니다!");
+        }
     </script>
 </body>
 </html>
+
 
 
 
