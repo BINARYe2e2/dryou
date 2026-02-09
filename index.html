@@ -337,7 +337,7 @@
             }
         }
 
-        // 3. 화면 리스트에 질문 추가 (임시)
+        // 3. 화면 리스트에 질문 추가
         function addQuestionToList() {
             const userInfo = document.getElementById('q-user-info').value;
             const content = document.getElementById('q-content').value;
@@ -352,27 +352,27 @@
             const newCard = document.createElement('div');
             newCard.className = 'card qna-item';
             newCard.style = "cursor: pointer; border-left: 5px solid var(--main-burgundy); margin-bottom: 15px;";
+    
+            // 클릭 시 답변 토글 함수 연결
             newCard.onclick = function() { toggleAnswer(this); };
-
+        
+            // 내부 HTML 구조 정돈 (중복된 date 태그 정리)
             newCard.innerHTML = `
                 <div style="display: flex; justify-content: space-between; align-items: center; pointer-events: none;">
                     <span style="font-weight: bold; color: var(--main-burgundy);">[질문] ${userInfo}</span>
-                    <span style="font-size: 0.8rem; color: #999;">${date}</span>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span style="font-size: 0.8rem; color: #999;">${date}</span>
+                        <button onclick="event.stopPropagation(); deleteQuestion(this)" class="admin-delete-btn" style="display: none; color: #ff4d4d; border: 1px solid #ff4d4d; background: none; border-radius: 3px; font-size: 0.7rem; cursor: pointer; padding: 2px 5px;">삭제</button>
+                    </div>
                 </div>
                 <p style="margin-top: 10px; font-weight: 600; pointer-events: none;">${content}</p>
                 <div class="qna-answer" style="display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #ddd;">
                     <p style="color: #444;"><span style="color: var(--main-burgundy); font-weight: bold;">└ Dr.you:</span> 질문이 접수되었습니다. 곧 답변해 드릴게요!</p>
                 </div>
-                <span style="font-size: 0.8rem; color: #999;">${date}</span>
-
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <span style="font-size: 0.8rem; color: #999;">${date}</span>
-                    <button onclick="event.stopPropagation(); deleteQuestion(this)" class="admin-delete-btn" style="display: none; color: #ff4d4d; border: 1px solid #ff4d4d; background: none; border-radius: 3px; font-size: 0.7rem; cursor: pointer; padding: 2px 5px;">삭제</button>
-                </div>
             `;
-
+        
             list.prepend(newCard); // 최신 질문을 목록 맨 위로 추가
-            closeQnaModal();
+            closeQnaModal(); // 모달 닫기 및 입력창 초기화
             alert("질문이 등록되었습니다!");
         }
         // 관리자 전용 삭제 함수
@@ -393,6 +393,7 @@
     </script>
 </body>
 </html>
+
 
 
 
